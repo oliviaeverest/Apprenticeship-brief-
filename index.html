@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Degree Apprenticeship Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10192B;
+    --ink-soft:#2B3A52;
+    --parchment:#FAF8F3;
+    --parchment-dim:#F1EDE3;
+    --brass:#A9824F;
+    --brass-deep:#8B6B3D;
+    --forest:#1E362B;
+    --line:#D9D2C1;
+    --slate:#5B6472;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Fraunces', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em;}
+  a{color:inherit;}
+  .texture{
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(169,130,79,0.05), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(30,54,43,0.04), transparent 45%);
+  }
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,248,243,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1120px; margin:0 auto; padding:20px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em;
+  }
+  .seal{
+    width:30px;height:30px;border-radius:50%;
+    border:1.4px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif; font-size:0.72rem; color:var(--brass-deep);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:32px; font-size:0.88rem; color:var(--ink-soft);}
+  .nav-links a{text-decoration:none; transition:color 0.2s;}
+  .nav-links a:hover{color:var(--brass-deep);}
+  .nav-cta{
+    font-size:0.82rem; padding:9px 18px; border:1px solid var(--ink);
+    text-decoration:none; letter-spacing:0.02em; transition:all 0.2s;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--parchment);}
+  .hero{
+    max-width:1120px; margin:0 auto; padding:96px 32px 100px;
+    position:relative;
+  }
+  .hero-frame{
+    border:1px solid var(--line);
+    padding:64px 56px;
+    position:relative;
+  }
+  .hero-frame::before, .hero-frame::after{
+    content:''; position:absolute; width:16px; height:16px;
+    border:1.4px solid var(--brass);
+  }
+  .hero-frame::before{top:-1px; left:-1px; border-right:none; border-bottom:none;}
+  .hero-frame::after{bottom:-1px; right:-1px; border-left:none; border-top:none;}
+  .eyebrow{
+    font-size:0.76rem; text-transform:uppercase; color:var(--brass-deep);
+    letter-spacing:0.16em; margin-bottom:22px; display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{content:''; width:36px; height:1px; background:var(--brass);}
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 4.1rem);
+    font-weight:500;
+    line-height:1.06;
+    letter-spacing:-0.01em;
+    max-width:16ch;
+    margin-bottom:28px;
+  }
+  .hero h1 em{font-style:italic; font-weight:400; color:var(--forest);}
+  .hero p.lede{
+    font-size:1.13rem; color:var(--ink-soft); max-width:46ch; line-height:1.6;
+    margin-bottom:40px;
+  }
+  .hero-actions{display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:56px;}
+  .btn-primary{
+    background:var(--ink); color:var(--parchment);
+    padding:15px 30px; text-decoration:none; font-size:0.92rem;
+    letter-spacing:0.02em; position:relative; display:inline-flex; align-items:center; gap:10px;
+    transition:background 0.25s;
+  }
+  .btn-primary:hover{background:var(--forest);}
+  .btn-ghost{
+    color:var(--ink-soft); text-decoration:none; font-size:0.9rem;
+    border-bottom:1px solid var(--brass); padding-bottom:2px;
+  }
+  .docket{
+    display:flex; gap:0; border-top:1px solid var(--line); padding-top:24px;
+    flex-wrap:wrap;
+  }
+  .docket-item{
+    padding:0 28px; border-right:1px solid var(--line);
+  }
+  .docket-item:first-child{padding-left:0;}
+  .docket-item:last-child{border-right:none;}
+  .docket-label{font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--slate); margin-bottom:6px;}
+  .docket-value{font-size:0.95rem; color:var(--ink);}
+  section{max-width:1120px; margin:0 auto; padding:100px 32px;}
+  .section-head{margin-bottom:56px; max-width:640px;}
+  .section-num{font-size:0.78rem; color:var(--brass-deep); margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.8rem,3vw,2.5rem); font-weight:500; line-height:1.15;}
+  .section-head p{color:var(--slate); margin-top:16px; font-size:1.02rem; line-height:1.6;}
+  .clauses{border-top:1px solid var(--line);}
+  .clause{
+    display:grid; grid-template-columns:80px 1fr 220px;
+    gap:32px; padding:28px 0; border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .clause-num{font-family:'Fraunces', serif; font-size:1.3rem; color:var(--brass-deep); font-style:italic;}
+  .clause-title{font-size:1.12rem; font-weight:500;}
+  .clause-desc{color:var(--slate); font-size:0.94rem; margin-top:6px; line-height:1.55;}
+  .clause-tag{
+    font-size:0.7rem; color:var(--forest); text-transform:uppercase; letter-spacing:0.08em;
+    justify-self:end; text-align:right; padding-top:4px;
+  }
+  @media (max-width:720px){
+    .clause{grid-template-columns:44px 1fr; }
+    .clause-tag{grid-column:1 / -1; justify-self:start; text-align:left; padding-top:0;}
+  }
+  .panel-bg{background:var(--ink); color:var(--parchment);}
+  .panel-bg .section-head p{color:#B9C0CC;}
+  .why-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:rgba(250,248,243,0.14);
+    border:1px solid rgba(250,248,243,0.14);
+  }
+  .why-card{background:var(--ink); padding:36px 32px;}
+  .why-card .num{font-family:'Fraunces', serif; font-style:italic; color:var(--brass); font-size:1.6rem; margin-bottom:18px;}
+  .why-card h3{font-size:1.08rem; font-weight:500; margin-bottom:12px;}
+  .why-card p{font-size:0.92rem; color:#AEB6C2; line-height:1.6;}
+  @media (max-width:820px){.why-grid{grid-template-columns:1fr;}}
+  .access-wrap{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  @media (max-width:820px){.access-wrap{grid-template-columns:1fr;}}
+  .access-copy p{color:var(--slate); line-height:1.7; font-size:1rem; margin-bottom:20px;}
+  .access-list{list-style:none; margin-top:28px;}
+  .access-list li{display:flex; gap:14px; padding:14px 0; border-top:1px solid var(--line); font-size:0.95rem;}
+  .access-list li:last-child{border-bottom:1px solid var(--line);}
+  .access-list .mark{color:var(--brass-deep); font-family:'Fraunces', serif; font-style:italic;}
+  .access-card{
+    border:1px solid var(--line); background:var(--parchment-dim);
+    padding:44px 40px; position:relative;
+  }
+  .access-card .seal{width:38px; height:38px; font-size:0.85rem; margin-bottom:24px;}
+  .access-card h3{font-size:1.3rem; font-weight:500; margin-bottom:10px;}
+  .access-card p.small{color:var(--slate); font-size:0.9rem; margin-bottom:28px; line-height:1.6;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:0.76rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--slate); margin-bottom:8px;}
+  .field input, .field textarea{
+    width:100%; border:1px solid var(--line); background:var(--parchment);
+    padding:12px 14px; font-family:'IBM Plex Sans', sans-serif; font-size:0.95rem;
+    color:var(--ink);
+  }
+  .field input:focus, .field textarea:focus{outline:2px solid var(--brass); outline-offset:1px;}
+  .submit-row{display:flex; align-items:center; gap:16px; margin-top:8px;}
+  .submit-btn{
+    background:var(--ink); color:var(--parchment); border:none;
+    padding:14px 28px; font-size:0.9rem; letter-spacing:0.02em; cursor:pointer;
+    transition:background 0.2s; font-family:'IBM Plex Sans', sans-serif;
+  }
+  .submit-btn:hover{background:var(--forest);}
+  .confirm-msg{font-size:0.86rem; color:var(--forest); display:none;}
+  .confirm-msg.show{display:block;}
+  footer{border-top:1px solid var(--line); padding:48px 32px; margin-top:40px;}
+  .footer-inner{
+    max-width:1120px; margin:0 auto; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-inner p{font-size:0.82rem; color:var(--slate);}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+  @media (max-width:640px){
+    .hero-frame{padding:44px 26px;}
+    .docket{flex-direction:column; gap:16px;}
+    .docket-item{border-right:none; border-bottom:1px solid var(--line); padding:0 0 14px;}
+    .docket-item:last-child{border-bottom:none;}
+    section{padding:72px 24px;}
+  }
+</style>
+</head>
+<body class="texture">
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <span class="seal">§</span>
+      The Degree Apprenticeship Brief
+    </div>
+    <nav class="nav-links">
+      <a href="#contents">Contents</a>
+      <a href="#why">Why It Exists</a>
+      <a href="#access">Request Access</a>
+    </nav>
+    <a class="nav-cta" href="#access">Request Access</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-frame">
+    <div class="eyebrow">Prepared for prospective law degree apprentices</div>
+    <h1>Everything I wish someone had <em>handed me</em> before I applied.</h1>
+    <p class="lede">A working file of the applications, assessment centres and offers behind one successful law degree apprenticeship route — organised, anonymised, and built to be used, not just read.</p>
+    <div class="hero-actions">
+      <a href="#access" class="btn-primary">Request private access →</a>
+      <a href="#contents" class="btn-ghost">See what's inside</a>
+    </div>
+    <div class="docket">
+      <div class="docket-item">
+        <div class="docket-label">Format</div>
+        <div class="docket-value">PDF · Spreadsheet · Notion</div>
+      </div>
+      <div class="docket-item">
+        <div class="docket-label">Route documented</div>
+        <div class="docket-value">Law Degree Apprenticeship</div>
+      </div>
+      <div class="docket-item">
+        <div class="docket-label">Access</div>
+        <div class="docket-value">By private invite</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contents">
+  <div class="section-head">
+    <div class="section-num mono">CONTENTS</div>
+    <h2>Eleven sections, one route through the process.</h2>
+    <p>Laid out in the order you'll actually move through the application cycle — from finding a scheme to walking into the interview.</p>
+  </div>
+  <div class="clauses">
+    <div class="clause">
+      <div class="clause-num">§1</div>
+      <div><div class="clause-title">The Landscape</div><div class="clause-desc">What a degree apprenticeship is, how it differs from the traditional route, and who it tends to suit.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§2</div>
+      <div><div class="clause-title">Finding Opportunities</div><div class="clause-desc">A curated set of job boards, firm career pages and aggregators worth checking on rotation.</div></div>
+      <div class="clause-tag">Resource list</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§3</div>
+      <div><div class="clause-title">Timeline Guidance</div><div class="clause-desc">When applications open, when assessment centres tend to run, and when offers typically land.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§4</div>
+      <div><div class="clause-title">CV Template</div><div class="clause-desc">A working template plus notes on what recruiters actually look for at this stage.</div></div>
+      <div class="clause-tag">Template</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§5</div>
+      <div><div class="clause-title">Extended Questions</div><div class="clause-desc">How to structure long-form application answers so they hold together under scrutiny.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§6</div>
+      <div><div class="clause-title">STAR &amp; Competency Questions</div><div class="clause-desc">The STAR method explained, common question types, and annotated example answers.</div></div>
+      <div class="clause-tag">Guide + examples</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§7</div>
+      <div><div class="clause-title">Assessment Centre Prep</div><div class="clause-desc">General formats you'll meet — group exercises, case studies, written tests — and how to prepare for each.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§8</div>
+      <div><div class="clause-title">Case Study Advice</div><div class="clause-desc">How to approach unfamiliar case material under time pressure.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§9</div>
+      <div><div class="clause-title">Interview Section</div><div class="clause-desc">Top tips, structure, and a set of questions worth asking your interviewer.</div></div>
+      <div class="clause-tag">Guide + prompts</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§10</div>
+      <div><div class="clause-title">Video Interview Guidance</div><div class="clause-desc">Format, etiquette and common pitfalls specific to recorded and live video rounds.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">§11</div>
+      <div><div class="clause-title">Application Tracker</div><div class="clause-desc">A linked spreadsheet for logging every application, deadline and outcome in one place.</div></div>
+      <div class="clause-tag">Spreadsheet</div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="panel-bg">
+  <div class="section-head">
+    <div class="section-num mono">WHY IT EXISTS</div>
+    <h2>Built from one route through the process — not a general theory of it.</h2>
+    <p>Most advice on this route is either a firm's own marketing or a forum thread. This is neither.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="num">01</div>
+      <h3>Tested, not theorised</h3>
+      <p>Every template and note comes from an application that was actually submitted and an assessment centre that was actually sat.</p>
+    </div>
+    <div class="why-card">
+      <div class="num">02</div>
+      <h3>Anonymised by design</h3>
+      <p>Firm-specific material is generalised into patterns you can apply anywhere, rather than answers tied to one process.</p>
+    </div>
+    <div class="why-card">
+      <div class="num">03</div>
+      <h3>Built to use, not admire</h3>
+      <p>Editable templates and a live tracker, not a static document you read once and close.</p>
+    </div>
+  </div>
+</section>
+
+<section id="access">
+  <div class="access-wrap">
+    <div class="access-copy">
+      <div class="section-num mono">PRIVATE ACCESS</div>
+      <h2 class="display" style="font-size:2rem; font-weight:500; margin-bottom:20px;">This isn't sold on the open web.</h2>
+      <p>Access is granted individually rather than opened to anyone with a link — so the workspace stays a working set of tools for people actually going through the process, not a public download.</p>
+      <ul class="access-list">
+        <li><span class="mark">§</span> A private Notion workspace, shared to your account directly</li>
+        <li><span class="mark">§</span> The full PDF, CV template and application tracker</li>
+        <li><span class="mark">§</span> Updates as sections are added, at no extra cost</li>
+      </ul>
+    </div>
+
+    <div class="access-card">
+      <div class="seal">§</div>
+      <h3>Request access</h3>
+      <p class="small">Leave your details below — access is granted individually, so there may be a short wait before you hear back.</p>
+      <form id="access-form">
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="field">
+          <label for="note">Where are you in the process? (optional)</label>
+          <textarea id="note" rows="3"></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="submit-btn">Submit request</button>
+          <span class="confirm-msg" id="confirm">Request noted — thank you.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>The Degree Apprenticeship Brief — a private resource, not affiliated with any employer or firm mentioned within.</p>
+    <p class="mono">§ EST. 2026</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('access-form').addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var name = document.getElementById('name').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var note = document.getElementById('note').value.trim();
+
+    var subject = 'Access request — The Degree Apprenticeship Brief';
+    var bodyLines = [
+      'Name: ' + name,
+      'Email: ' + email,
+      '',
+      'Where are you in the process:',
+      note || '(not provided)'
+    ];
+    var body = bodyLines.join('\n');
+
+    var mailto = 'mailto:Oliviageverest@aol.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailto;
+
+    document.getElementById('confirm').classList.add('show');
+    this.querySelector('.submit-btn').textContent = 'Opening email…';
+  });
+</script>
+
+</body>
+</html>
