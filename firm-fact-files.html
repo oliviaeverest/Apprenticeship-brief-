@@ -156,7 +156,196 @@
 
     <!-- LIVE FIRM CARD — duplicate this block for each new firm.
          Set the PDF path in href, and mark the card as "live" (remove "placeholder"). -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firm Fact Files — The Degree Apprenticeship Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10192B;
+    --ink-soft:#2B3A52;
+    --parchment:#FAF8F3;
+    --parchment-dim:#F1EDE3;
+    --brass:#A9824F;
+    --brass-deep:#8B6B3D;
+    --forest:#1E362B;
+    --line:#D9D2C1;
+    --slate:#5B6472;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Fraunces', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em;}
+  a{color:inherit;}
+  .texture{
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(169,130,79,0.05), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(30,54,43,0.04), transparent 45%);
+  }
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,248,243,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1120px; margin:0 auto; padding:20px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em;
+    text-decoration:none;
+  }
+  .seal{
+    width:30px;height:30px;border-radius:50%;
+    border:1.4px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif; font-size:0.72rem; color:var(--brass-deep);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:32px; font-size:0.88rem; color:var(--ink-soft);}
+  .nav-links a{text-decoration:none; transition:color 0.2s;}
+  .nav-links a:hover{color:var(--brass-deep);}
+  .nav-cta{
+    font-size:0.82rem; padding:9px 18px; border:1px solid var(--ink);
+    text-decoration:none; letter-spacing:0.02em; transition:all 0.2s;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--parchment);}
+
+  .hero{max-width:1120px; margin:0 auto; padding:80px 32px 64px;}
+  .breadcrumb{
+    font-size:0.82rem; color:var(--slate); margin-bottom:24px;
+  }
+  .breadcrumb a{border-bottom:1px solid var(--line); padding-bottom:1px;}
+  .breadcrumb a:hover{color:var(--brass-deep); border-color:var(--brass-deep);}
+  .eyebrow{
+    font-size:0.76rem; text-transform:uppercase; color:var(--brass-deep);
+    letter-spacing:0.16em; margin-bottom:22px; display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{content:''; width:36px; height:1px; background:var(--brass);}
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2.1rem, 4.2vw, 3.2rem);
+    font-weight:500; line-height:1.1; letter-spacing:-0.01em;
+    max-width:18ch; margin-bottom:22px;
+  }
+  .hero p.lede{
+    font-size:1.08rem; color:var(--ink-soft); max-width:56ch; line-height:1.65;
+  }
+
+  section{max-width:1120px; margin:0 auto; padding:0 32px 100px;}
+
+  .firm-grid{
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:1px; background:var(--line); border:1px solid var(--line);
+    margin-top:8px;
+  }
+  .firm-card{
+    background:var(--parchment); padding:32px 28px;
+    display:flex; flex-direction:column; justify-content:space-between; gap:22px;
+    min-height:220px;
+    transition:background 0.2s;
+  }
+  .firm-card.live:hover{background:var(--parchment-dim);}
+  .firm-card .top .firm-mono{
+    font-size:0.7rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:12px;
+  }
+  .firm-card h3{font-family:'Fraunces', serif; font-size:1.25rem; font-weight:500; margin-bottom:8px;}
+  .firm-card p{font-size:0.9rem; color:var(--slate); line-height:1.55;}
+  .firm-card .go{
+    font-size:0.85rem; text-decoration:none; color:var(--ink);
+    border-bottom:1px solid var(--brass); padding-bottom:2px; align-self:flex-start;
+  }
+  .firm-card.live .go:hover{color:var(--brass-deep);}
+  .firm-card.placeholder{opacity:0.55;}
+  .firm-card.placeholder .go{border-color:var(--line); color:var(--slate); cursor:default;}
+
+  footer{border-top:1px solid var(--line); padding:48px 32px; margin-top:0;}
+  .footer-inner{
+    max-width:1120px; margin:0 auto; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-inner p{font-size:0.82rem; color:var(--slate);}
+
+  @media (max-width:640px){
+    .hero{padding:56px 24px 40px;}
+    section{padding:0 24px 72px;}
+  }
+</style>
+</head>
+<body class="texture">
+
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <span class="seal">§</span>
+      The Degree Apprenticeship Brief
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#contents">Contents</a>
+      <a href="index.html#why">Why It Exists</a>
+      <a href="index.html#access">Request Access</a>
+    </nav>
+    <a class="nav-cta" href="index.html#access">Request Access</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="index.html#contents">§12 · Contents</a></div>
+  <div class="eyebrow">Firm Fact Files</div>
+  <h1>Research profiles, one firm at a time.</h1>
+  <p class="lede">Each box below opens a full PDF fact file — culture, practice areas, financials, legal tech, and personal application angles — built the same way for every firm so they're easy to compare.</p>
+</div>
+
+<section>
+  <div class="firm-grid">
+
+    <!-- LIVE FIRM CARD — duplicate this block for each new firm.
+         Set the PDF path in href, and mark the card as "live" (remove "placeholder"). -->
     <a class="firm-card live" href="assets/firm-fact-files/ao-shearman.pdf" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+      <div class="top">
+        <div class="firm-mono mono">Magic Circle · Transatlantic</div>
+        <h3>A&amp;O Shearman</h3>
+        <p>Merger, financials, practice areas, legal tech, culture, CSR and the solicitor apprenticeship structure.</p>
+      </div>
+      <span class="go">View fact file →</span>
+    </a>
+
+    <!-- Placeholder — replace with the next firm once its PDF is ready -->
+    <div class="firm-card placeholder">
+      <div class="top">
+        <div class="firm-mono mono">Coming soon</div>
+        <h3>Next firm</h3>
+        <p>More fact files are added here as they're compiled.</p>
+      </div>
+      <span class="go">Not yet available</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>The Degree Apprenticeship Brief — a private resource, not affiliated with any employer or firm mentioned within.</p>
+    <p class="mono">§ EST. 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
       <div class="top">
         <div class="firm-mono mono">Magic Circle · Transatlantic</div>
         <h3>A&amp;O Shearman</h3>
