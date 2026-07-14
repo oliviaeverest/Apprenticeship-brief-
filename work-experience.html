@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work Experience — The Degree Apprenticeship Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#10192B;
+    --ink-soft:#2B3A52;
+    --parchment:#FAF8F3;
+    --parchment-dim:#F1EDE3;
+    --brass:#A9824F;
+    --brass-deep:#8B6B3D;
+    --forest:#1E362B;
+    --line:#D9D2C1;
+    --slate:#5B6472;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Fraunces', serif;}
+  .mono{font-family:'IBM Plex Mono', monospace; letter-spacing:0.06em;}
+  a{color:inherit;}
+  .texture{
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(169,130,79,0.05), transparent 40%),
+      radial-gradient(circle at 80% 60%, rgba(30,54,43,0.04), transparent 45%);
+  }
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,248,243,0.9);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    max-width:1120px; margin:0 auto; padding:20px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em;
+    text-decoration:none;
+  }
+  .seal{
+    width:30px;height:30px;border-radius:50%;
+    border:1.4px solid var(--brass);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif; font-size:0.72rem; color:var(--brass-deep);
+    flex-shrink:0;
+  }
+  .nav-links{display:flex; gap:32px; font-size:0.88rem; color:var(--ink-soft);}
+  .nav-links a{text-decoration:none; transition:color 0.2s;}
+  .nav-links a:hover{color:var(--brass-deep);}
+  .nav-cta{
+    font-size:0.82rem; padding:9px 18px; border:1px solid var(--ink);
+    text-decoration:none; letter-spacing:0.02em; transition:all 0.2s;
+  }
+  .nav-cta:hover{background:var(--ink); color:var(--parchment);}
+
+  .hero{max-width:1120px; margin:0 auto; padding:80px 32px 64px;}
+  .breadcrumb{font-size:0.82rem; color:var(--slate); margin-bottom:24px;}
+  .breadcrumb a{border-bottom:1px solid var(--line); padding-bottom:1px;}
+  .breadcrumb a:hover{color:var(--brass-deep); border-color:var(--brass-deep);}
+  .eyebrow{
+    font-size:0.76rem; text-transform:uppercase; color:var(--brass-deep);
+    letter-spacing:0.16em; margin-bottom:22px; display:flex; align-items:center; gap:14px;
+  }
+  .eyebrow::before{content:''; width:36px; height:1px; background:var(--brass);}
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2.1rem, 4.2vw, 3.2rem);
+    font-weight:500; line-height:1.1; letter-spacing:-0.01em;
+    max-width:20ch; margin-bottom:22px;
+  }
+  .hero p.lede{
+    font-size:1.08rem; color:var(--ink-soft); max-width:56ch; line-height:1.65;
+  }
+
+  section{max-width:1120px; margin:0 auto; padding:0 32px 100px;}
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .section-num{font-size:0.78rem; color:var(--brass-deep); margin-bottom:14px;}
+  .section-head h2{font-size:clamp(1.5rem,2.6vw,1.9rem); font-weight:500; line-height:1.2;}
+
+  .clauses{border-top:1px solid var(--line); margin-bottom:100px;}
+  .clause{
+    display:grid; grid-template-columns:64px 1fr 140px;
+    gap:32px; padding:24px 0; border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .clause-num{font-family:'Fraunces', serif; font-size:1.2rem; color:var(--brass-deep); font-style:italic;}
+  .clause-title{font-size:1.05rem; font-weight:500;}
+  .clause-title a{text-decoration:none; color:inherit; border-bottom:1px solid transparent; transition:border-color 0.2s, color 0.2s;}
+  .clause-title a:hover{border-color:var(--brass-deep); color:var(--brass-deep);}
+  .clause-desc{color:var(--slate); font-size:0.92rem; margin-top:6px; line-height:1.55;}
+  .clause-tag{
+    font-size:0.68rem; color:var(--forest); text-transform:uppercase; letter-spacing:0.08em;
+    justify-self:end; text-align:right; padding-top:4px;
+  }
+  @media (max-width:720px){
+    .clause{grid-template-columns:40px 1fr;}
+    .clause-tag{grid-column:1 / -1; justify-self:start; text-align:left; padding-top:0;}
+  }
+
+  .stub{
+    border-top:1px solid var(--line);
+    padding:56px 0; scroll-margin-top:90px;
+  }
+  .stub:last-child{border-bottom:1px solid var(--line);}
+  .stub-eyebrow{font-size:0.72rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;}
+  .stub h3{font-family:'Fraunces', serif; font-size:1.5rem; font-weight:500; margin-bottom:14px;}
+  .stub p.placeholder{
+    color:var(--slate); font-size:0.95rem; line-height:1.6;
+    border-left:2px solid var(--line); padding-left:16px; max-width:60ch;
+  }
+  .stub .back-top{
+    display:inline-block; margin-top:20px; font-size:0.82rem; color:var(--slate);
+    border-bottom:1px solid var(--line); padding-bottom:2px; text-decoration:none;
+  }
+  .stub .back-top:hover{color:var(--brass-deep); border-color:var(--brass-deep);}
+
+  footer{border-top:1px solid var(--line); padding:48px 32px; margin-top:0;}
+  .footer-inner{
+    max-width:1120px; margin:0 auto; display:flex; justify-content:space-between;
+    align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-inner p{font-size:0.82rem; color:var(--slate);}
+
+  @media (max-width:640px){
+    .hero{padding:56px 24px 40px;}
+    section{padding:0 24px 72px;}
+  }
+</style>
+</head>
+<body class="texture">
+
+<header>
+  <div class="nav">
+    <a class="brand" href="index.html">
+      <span class="seal">§</span>
+      The Degree Apprenticeship Brief
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#contents">Contents</a>
+      <a href="index.html#why">Why It Exists</a>
+      <a href="index.html#access">Request Access</a>
+    </nav>
+    <a class="nav-cta" href="index.html#access">Request Access</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="breadcrumb"><a href="index.html#contents">§13 · Contents</a></div>
+  <div class="eyebrow">Work Experience</div>
+  <h1>Getting it, using it, writing it up.</h1>
+  <p class="lede">Five areas covering the full arc of work experience — from finding it, through making the most of it, to putting it on paper for an application.</p>
+</div>
+
+<section>
+  <div class="section-head">
+    <div class="section-num mono">JUMP TO</div>
+  </div>
+  <div class="clauses">
+    <div class="clause">
+      <div class="clause-num">i.</div>
+      <div><div class="clause-title"><a href="#events">Firm-Specific Events</a></div><div class="clause-desc">Insight days, open evenings and firm-run sessions worth tracking, and how to find out about them.</div></div>
+      <div class="clause-tag">Resource list</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">ii.</div>
+      <div><div class="clause-title"><a href="#timeline">Timeline Guidance</a></div><div class="clause-desc">When to start looking, when placements tend to run, and how far ahead to plan.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">iii.</div>
+      <div><div class="clause-title"><a href="#websites">Work Experience Websites</a></div><div class="clause-desc">Where to look — firm pages, aggregators and schemes worth checking on rotation.</div></div>
+      <div class="clause-tag">Resource list</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">iv.</div>
+      <div><div class="clause-title"><a href="#make-the-most">How to Make the Most of It</a></div><div class="clause-desc">What to actually do once you're there — questions to ask, notes to keep, people to meet.</div></div>
+      <div class="clause-tag">Guide</div>
+    </div>
+    <div class="clause">
+      <div class="clause-num">v.</div>
+      <div><div class="clause-title"><a href="#writing-up">Writing Up Work Experience Sections</a></div><div class="clause-desc">Turning what you did into application-ready material, without it reading like a diary.</div></div>
+      <div class="clause-tag">Guide + examples</div>
+    </div>
+  </div>
+
+  <div class="stub" id="events">
+    <div class="stub-eyebrow mono">i. Firm-Specific Events</div>
+    <h3>Firm-Specific Events</h3>
+    <p class="placeholder">Content to add: which firms run insight days/open evenings, roughly when in the year, and how to hear about them.</p>
+    <a class="back-top" href="#">↑ Back to top</a>
+  </div>
+
+  <div class="stub" id="timeline">
+    <div class="stub-eyebrow mono">ii. Timeline Guidance</div>
+    <h3>Timeline Guidance</h3>
+    <p class="placeholder">Content to add: a rough calendar of when to start applying for placements and how it lines up with the apprenticeship application cycle.</p>
+    <a class="back-top" href="#">↑ Back to top</a>
+  </div>
+
+  <div class="stub" id="websites">
+    <div class="stub-eyebrow mono">iii. Work Experience Websites</div>
+    <h3>Work Experience Websites</h3>
+    <p class="placeholder">Content to add: the specific sites and portals worth bookmarking.</p>
+    <a class="back-top" href="#">↑ Back to top</a>
+  </div>
+
+  <div class="stub" id="make-the-most">
+    <div class="stub-eyebrow mono">iv. How to Make the Most of It</div>
+    <h3>How to Make the Most of It</h3>
+    <p class="placeholder">Content to add: practical advice for during the placement itself.</p>
+    <a class="back-top" href="#">↑ Back to top</a>
+  </div>
+
+  <div class="stub" id="writing-up">
+    <div class="stub-eyebrow mono">v. Writing Up Work Experience Sections</div>
+    <h3>Writing Up Work Experience Sections</h3>
+    <p class="placeholder">Content to add: how to turn placement notes into a tight, specific application paragraph.</p>
+    <a class="back-top" href="#">↑ Back to top</a>
+  </div>
+
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p>The Degree Apprenticeship Brief — a private resource, not affiliated with any employer or firm mentioned within.</p>
+    <p class="mono">§ EST. 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
